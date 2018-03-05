@@ -1,7 +1,7 @@
 # ideco
 react
 
-# node /api/
+## node /api/
  RESTful API: 
 ```
  create => POST:   /api/
@@ -9,7 +9,7 @@ react
  update => PUT:    /api/
  delete => DELETE: /api/:id
 ```
-# mongoDB
+## mongoDB
  document:
  ```
  {
