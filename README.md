@@ -2,16 +2,13 @@
 react
 
 # node /api/
- RESTful API:
- <br>
- create => POST: /api/
- <br>
- read => GET: /api/?city=Moscow&status=0
- <br>
- update => PUT: /api/
- <br>
+ RESTful API: 
+```
+ create => POST:   /api/
+ read   => GET:    /api/?city=Moscow&status=0
+ update => PUT:    /api/
  delete => DELETE: /api/:id
- <br>
+```
 # mongoDB
  document:
  ```
