@@ -12,11 +12,11 @@ class Flight extends Component {
   convertToStatus (number) {
     const options = [
       {value: '', label:''},
-      {value: 0, label:'Посадка'},
-      {value: 1, label:'Взлет'},
-      {value: 2, label:'В пути'},
-      {value: 3, label:'Приземлился'},
-      {value: 4, label:'Задержан'}
+      {value: '0', label:'Посадка'},
+      {value: '1', label:'Взлет'},
+      {value: '2', label:'В пути'},
+      {value: '3', label:'Приземлился'},
+      {value: '4', label:'Задержан'}
     ];
     return options.map((status) => {
       if (status.value === number) {

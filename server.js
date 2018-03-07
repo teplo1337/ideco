@@ -24,7 +24,8 @@ let router = (app, db) => {
  
     /* rest api */
 
-    app.get('/api/', parseJson, (req, res) => {        
+    app.get('/api/', parseJson, (req, res) => {
+        console.log(req.query);
         collection.find(
             {
                 "$and": [
@@ -41,7 +42,7 @@ let router = (app, db) => {
                         ],
                     },
                     {
-                        "status": (req.query.status) ? Number(req.query.status) : {
+                        "status": (req.query.status) ? req.query.status : {
                             "$exists": true
                         }
                     }

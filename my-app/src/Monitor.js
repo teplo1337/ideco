@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Monitor.scss';
 import Form from './components/form/form';
 import Flight from './components/flight/flight';
+import axios from 'axios';
 
 class Monitor extends Component {
   constructor (props) {
@@ -13,9 +14,17 @@ class Monitor extends Component {
   }
 
   submit (data) {
-    
-    data.map((flight) => console.log(flight));
-    this.setState({flights: data});
+    console.log(data)
+    axios.get('/api/', {
+      params: {
+        city: data.city,
+        status: data.status
+      }
+    })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({flights: response.data});
+      });   
   }
 
   render() {

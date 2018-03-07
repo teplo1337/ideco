@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './form.scss';
 
 class Form extends Component {
@@ -13,11 +12,11 @@ class Form extends Component {
       data:'',
       options: [
         {value:'', label:''},
-        {value: 0, label:'Посадка'},
-        {value: 1, label:'Взлет'},
-        {value: 2, label:'В пути'},
-        {value: 3, label:'Приземлился'},
-        {value: 4, label:'Задержан'}
+        {value: '0', label:'Посадка'},
+        {value: '1', label:'Взлет'},
+        {value: '2', label:'В пути'},
+        {value: '3', label:'Приземлился'},
+        {value: '4', label:'Задержан'}
       ]
     };
 
@@ -33,7 +32,7 @@ class Form extends Component {
   }
 
   handleStatus (event) {
-    this.setState({status: event.target.value});
+    this.state.status = event.target.value;
     this.sendRequest();
   }
 
@@ -47,16 +46,7 @@ class Form extends Component {
   };
 
   sendRequest () {
-    axios.get('/api/', {
-      params: {
-        city: this.state.city,
-        status: this.state.status
-      }
-    })
-      .then((response) => {
-        this.setState({data: response.data});
-        this.props.onSubmit(response.data);
-      });
+    this.props.onSubmit(this.state);
   }
 
   render() { 

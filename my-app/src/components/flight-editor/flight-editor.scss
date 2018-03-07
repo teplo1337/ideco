@@ -1,31 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 $color-dark-purple: rgb(64, 64, 124);
 $color-medium-purple: rgb(121, 121, 199);
 $color-light-purple: rgb(248, 234, 248);
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
-
-.dest {
-  font-family: 'Open Sans', sans-serif;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
-}
-.dest__block {
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  input {
-    text-align: left;
+.flight-form {
+  width: 900px;
+  .dest {
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    width: 880px;
   }
-  &:last-child {
+  .dest__block {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     input {
-      text-align: right;
+      border: none;
+      outline: none;
+      text-align: left;
+    }
+    &:last-child {
+      input {
+        text-align: right;
+      }
+    }
+  }
+  .info {
+    input {
+      border: none;
+      outline: none;
+      text-align: center;
     }
   }
 }
+
+
 .city {
   margin: 0px;
   font-size: 24px;
@@ -53,13 +67,23 @@ $color-light-purple: rgb(248, 234, 248);
   font-weight: 200;
 }
 
-.save {
+@mixin button {
   margin-left: 10px;
   padding: 5px;
   font-size: 14px;
-  height: 30px;
+  height: 30px;  
+}
+
+.save {
+  @include button;
   color: $color-light-purple;
   background-color: $color-medium-purple;
   border: 1px solid $color-light-purple;
 
+}
+.delete {
+  @include button;
+  color: $color-light-purple;
+  background-color: rgb(255, 116, 116);
+  border: 1px solid rgb(255, 210, 210);
 }

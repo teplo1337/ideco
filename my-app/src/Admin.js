@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './Admin.scss';
 import Form from './components/form/form';
 import FlightEditor from './components/flight-editor/flight-editor';
+import axios from 'axios';
 
 class Admin extends Component {
   constructor (props) {
@@ -10,12 +11,25 @@ class Admin extends Component {
     this.state = {flights: []};
 
     this.submit = this.submit.bind(this);
+    this.deleteFlight = this.deleteFlight.bind(this);
   }
 
   submit (data) {
-    
-    data.map((flight) => console.log(flight));
-    this.setState({flights: data});
+    this.setState({filter: data});
+    axios.get('/api/', {
+      params: {
+        city: data.city,
+        status: data.status
+      }
+    })
+      .then((response) => {
+        console.log(response.data)
+        this.setState({flights: response.data});
+      });   
+  }
+
+  deleteFlight (data) {
+   this.submit(this.state.filter);
   }
 
   render() {
@@ -38,7 +52,10 @@ class Admin extends Component {
           </div>
 
         </div>        
-          {this.state.flights.map(flight => <div className="content"><FlightEditor data={flight}/></div>)}
+        {this.state.flights.map(flight => 
+          <div className="content">
+          <FlightEditor delete={this.deleteFlight} data={flight}/>
+        </div>)}
 
       </div>
     );
