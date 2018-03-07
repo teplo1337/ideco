@@ -1,8 +1,10 @@
-# ideco
-react
+# ideco http://ideco.kekcheburek.ru/
+### react 
+routing: '/', '/adm/'
 
-### node /api/
- RESTful API: 
+
+### node '/api/'
+RESTful API: 
 ```
  create => POST:   /api/
  read   => GET:    /api/?city=Moscow&status=0
