@@ -87,12 +87,16 @@ class FlightEditor extends Component {
             <input type="text" className="city" placeholder="Город вылета" onChange={this.handleChangeFor('takeoff.city')} value={this.state.data.takeoff.city}/>
             <input type="text" className="airport" placeholder="Аэропорт вылета" onChange={this.handleChangeFor('takeoff.airport')} value={this.state.data.takeoff.airport}/>
             <input type="datetime-local" className="time" onChange={this.handleChangeFor('takeoff.time')} value={this.state.data.takeoff.time}/>
+            <label className="fact_time">Фактичесое время:</label><input type="datetime-local" className="fact_time" onChange={this.handleChangeFor('takeoff.fact_time')} value={this.state.data.takeoff.fact_time}/>
           </div>
           <div className="info">
           <input type="text" className="flight" placeholder="Номер рейса" onChange={this.handleChangeFor('name')} value={this.state.data.name}/>
             <div className="arrow">
             &#9992;
             </div>
+            <div className="type">
+              <input type="text" className="type" placeholder="Тип самолета" onChange={this.handleChangeFor('type')} value={this.state.data.type}/>
+            </div>            
             <select type="text" className="status" onChange={this.handleChangeFor('status')} value={this.state.data.status}>
               <option value=""></option>;
               <option value="0">Посадка</option>;
@@ -106,6 +110,7 @@ class FlightEditor extends Component {
             <input type="text" className="city" placeholder="Город посадки" onChange={this.handleChangeFor('landing.city')} value={this.state.data.landing.city}/>
             <input type="text" className="airport" placeholder="Аэропорт посадки" onChange={this.handleChangeFor('landing.airport')} value={this.state.data.landing.airport}/>
             <input type="datetime-local" className="time" onChange={this.handleChangeFor('landing.time')} value={this.state.data.landing.time}/>
+            <label className="fact_time">Фактичесое время:</label><input type="datetime-local" className="fact_time" onChange={this.handleChangeFor('landing.fact_time')} value={this.state.data.landing.fact_time}/>
           </div>
         </div>
         <Buttons 
@@ -121,7 +126,7 @@ class FlightEditor extends Component {
 FlightEditor.propTypes = {};
 
 FlightEditor.defaultProps = {
-  data: {"_id":"","name":"","takeoff":{"time":"","city":"","airport":""},"landing":{"time":"","city":"","airport":""},"status":""}
+  data: {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}
 };
 
 export default FlightEditor;

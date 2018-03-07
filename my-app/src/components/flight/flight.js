@@ -35,31 +35,40 @@ class Flight extends Component {
           <h2 className="airport">
             {this.props.data.takeoff.airport}          
           </h2>
-          <h3 className="time">
+          <div className="time">
             {this.changeDateFormat(this.props.data.takeoff.time)}            
-          </h3>        
+          </div>
+          <div className="fact_time">
+            Фактическое время: {this.changeDateFormat(this.props.data.landing.fact_time)}
+          </div>  
         </div>
         <div className="info">
           <h1 className="flight">
-          {this.props.data.name}
+            {this.props.data.name}
           </h1>
           <div className="arrow">
-          &#9992;
+            &#9992;
+          </div>
+          <div className="type">
+            {this.props.data.type}
           </div>
           <div className="status">
-          {this.convertToStatus(this.props.data.status)}
+            {this.convertToStatus(this.props.data.status)}
           </div>        
         </div>
         <div className="dest__block">
-          <div className="city">
+          <h1 className="city">
             {this.props.data.landing.city}
-          </div>
-          <div className="airport">
+          </h1>
+          <h2 className="airport">
             {this.props.data.landing.airport}          
-          </div>
+          </h2>
           <div className="time">
             {this.changeDateFormat(this.props.data.landing.time)}
-          </div>        
+          </div>
+          <div className="fact_time">
+            Фактическое время: {this.changeDateFormat(this.props.data.landing.fact_time)}
+          </div>      
         </div>
       </div>
     )
