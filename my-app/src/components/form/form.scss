@@ -1,0 +1,75 @@
+$color-dark-purple: rgb(64, 64, 124);
+$color-medium-purple: rgb(121, 121, 199);
+$color-light-purple: rgb(248, 234, 248);
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+}
+
+@mixin input-select-style {
+
+}
+
+.search {
+  margin-left: 15px;  
+  text-align: center;
+
+  label {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    color: $color-light-purple;
+    font-size: 20px;
+    
+    input {
+      display: block;
+      outline: none;
+      color: $color-light-purple;
+      text-align: center;
+      height: 20px;
+      background: transparent;
+      border: none;
+      width: 200px;
+      border-bottom: 1px solid $color-light-purple;
+    }
+    
+    select {
+      margin-top: 3px;
+      display: block;
+      outline: none;
+      color: $color-light-purple;
+      text-align: center;
+      height: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid $color-light-purple;      
+      text-align: center;
+      text-align-last: center;
+      width: 200px;
+
+      option {
+        color: black;
+        background-color: $color-light-purple;
+        border: 1px solid $color-dark-purple;
+        text-align: center;
+        text-align-last: center;
+      }
+    }
+  }
+}
+
+
+#search {  
+  margin-left: 0px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 18px;
+  height: 40px;
+  color: $color-light-purple;
+  background-color: $color-medium-purple;
+  border: 1px solid $color-light-purple;
+
+}

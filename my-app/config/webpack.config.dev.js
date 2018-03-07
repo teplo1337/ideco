@@ -190,7 +190,7 @@ module.exports = {
           },
           //scss
           {
-            test: /\.css$/,
+            test: /\.scss$/,
             use: [
               require.resolve('style-loader'),
               {

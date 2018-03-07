@@ -1,0 +1,67 @@
+$color-dark-purple: rgb(64, 64, 124);
+$color-medium-purple: rgb(121, 121, 199);
+$color-light-purple: rgb(248, 234, 248);
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+@mixin shadow {
+  -webkit-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.35);
+  -moz-box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.35);
+  box-shadow: 3px 3px 5px 0px rgba(50, 50, 50, 0.35);
+}
+
+.Monitor {
+  display: flex;
+  flex-direction: column;
+}
+.nav {
+  text-align: center;
+  a {
+    margin: 0 15px;
+  }
+}
+.header {
+  min-width: 900px;
+  background-color: $color-medium-purple;
+  display: flex;
+  
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px auto;
+  padding: 10px;
+  border: 0.5px solid $color-dark-purple;
+  @include shadow;
+}
+
+.content {
+  min-width: 900px;
+  height: 140px;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 15px auto;
+  padding: 10px;
+  border: 0.5px solid $color-dark-purple;
+  @include shadow;
+}
+
+.name {
+  height: 40px;
+  font-size: 18px;
+  h1 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+  }
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: white;
+    margin-left: 5px;
+    margin-top: 30px;
+
+  }
+}
