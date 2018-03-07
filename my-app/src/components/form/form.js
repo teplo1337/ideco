@@ -28,11 +28,11 @@ class Form extends Component {
 
   async handleCity (event) {
     await this.setState({city: event.target.value});
-    await this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state);
   }
 
   async handleStatus (event) {
-    this.setState({status: event.target.value});
+    await this.setState({status: event.target.value});
     this.props.onSubmit(this.state);
   }
 

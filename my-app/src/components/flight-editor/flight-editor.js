@@ -36,24 +36,15 @@ class FlightEditor extends Component {
   }
 
   handleCreate() {
-    for (let prop in this.state.data) {
-      if (!prop) { return false }
-    }    
     this.props.onCreate(this.state.data);
     this.setState({data: {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
   }
 
   handleSave() {
-    for (let prop in this.state.data) {
-      if (!prop) { return false }
-    }
     this.props.onSave(this.state.data);
   }
 
   handleDelete() {
-    for (let prop in this.state.data) {
-      if (!prop) { return false }
-    }
     this.props.onDelete(this.state.data);
   }
 
