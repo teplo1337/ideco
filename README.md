@@ -14,22 +14,25 @@ RESTful API:
 ### mongoDB
  document:
  ```
- {
+{
     "_id": {
-        "$oid": "5a9d7c68734d1d5a71e753e8"
+        "$oid": "5aa0125c302c7505e9cd0f01"
     },
-    "name": "SU-0044",
+    "name": "SU-0088",
     "takeoff": {
-        "time": "2018-03-02T17:10:18.818Z",
-        "city": "Moscow",
-        "airport": "SHEREMETYEVO - D"
+        "time": "2018-03-12T10:21",
+        "fact_time": "2018-03-12T10:22",
+        "city": "Yekaterinburg",
+        "airport": "KOLCOVO - 1"
     },
     "landing": {
-        "time": "2018-03-03T17:10:18.818Z",
-        "city": "St. Petersburg",
-        "airport": "PULKOVO - 1"
+        "time": "2018-03-12T22:21",
+        "fact_time": "2018-03-12T22:22",
+        "city": "Lima",
+        "airport": "Peru-2"
     },
-    "status": 0
+    "status": "4",
+    "type": "SJ100"
 }
  ```
 ### test task:
