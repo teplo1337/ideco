@@ -39,7 +39,7 @@ class Flight extends Component {
             {this.changeDateFormat(this.props.data.takeoff.time)}            
           </div>
           <div className="fact_time">
-            Фактическое время: {this.changeDateFormat(this.props.data.landing.fact_time)}
+            Фактическое время: {this.changeDateFormat(this.props.data.takeoff.fact_time)}
           </div>  
         </div>
         <div className="info">
