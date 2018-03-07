@@ -59,7 +59,8 @@ let router = (app, db) => {
             name: req.body.name,
             takeoff: req.body.takeoff,
             landing: req.body.landing,
-            status: req.body.status
+            status: req.body.status,
+            type: req.body.type
         }
         if (checkData(data)) {
             collection.insert(data, function(err, result) {
@@ -75,7 +76,8 @@ let router = (app, db) => {
             name: req.body.name,
             takeoff: req.body.takeoff,
             landing: req.body.landing,
-            status: req.body.status
+            status: req.body.status,
+            type: req.body.type
         }
         if (req.body._id && checkData(data)) {
             collection.findOneAndUpdate(
