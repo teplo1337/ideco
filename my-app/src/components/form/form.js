@@ -27,7 +27,7 @@ class Form extends Component {
   }
 
   handleCity (event) {
-    this.setState({city: event.target.value});
+    this.state.city = event.target.value;
     this.sendRequest();
   }
 
@@ -53,7 +53,7 @@ class Form extends Component {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
         <div className="search">
-          <label>Выберите город:
+          <label>Введите город:
             <input type="text" value={this.state.city} onChange={this.handleCity}/>
           </label>
         </div>

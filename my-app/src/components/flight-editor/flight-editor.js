@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import './flight-editor.scss';
-import Moment from 'moment';
-import axios from 'axios';
+
+class Buttons extends React.Component {
+  constructor (props) {
+    super(props);
+
+  }
+
+  save = <input className="save" key="key1"type="button" onClick={this.props.save} value="Сохранить"/>;
+  delete = <input className="delete" key="key2"type="button" onClick={this.props.delete} value="Удалить"/>;
+  create = <input className="create" key="key3"type="button" onClick={this.props.create} value="Создать"/>;
+
+  render() {
+    let buttons;
+    if (this.props.isCreate) {
+      buttons = [this.create];
+    } else {
+      buttons = [this.save, this.delete];
+    }
+    return (
+      <div>{buttons}</div>
+    );
+  }
+}
 
 class FlightEditor extends Component {
   constructor(props) {
@@ -11,44 +32,37 @@ class FlightEditor extends Component {
       data: props.data
     }
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCreate = this.handleCreate.bind(this)
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleChangeFor = this.handleChangeFor.bind(this);
     
   }
 
-  handleSave(event) {
-    event.preventDefault();
+  handleCreate() {
+    for (let prop in this.state.data) {
+      if (!prop) { return false }
+    }    
+    this.props.onCreate(this.state.data);
+    this.state.data = {"_id":"","name":"","takeoff":{"time":"","city":"","airport":""},"landing":{"time":"","city":"","airport":""},"status":""};
+  }
+
+  handleSave() {
     for (let prop in this.state.data) {
       if (!prop) { return false }
     }
-    this.saveFlight(this.state.data);
+    this.props.onSave(this.state.data);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleDelete() {
     for (let prop in this.state.data) {
       if (!prop) { return false }
     }
-    this.saveFlight(this.state.data);
+    this.props.onDelete(this.state.data);
   }
 
-  handleDelete(event) {
-    event.preventDefault();
-    this.deleteFlight(this.state.data);
-  }
-
-  saveFlight (data) {
-    axios.put('/api/', data)
-      .then((response) => {
-      });
-  }
-
-  deleteFlight (data) {
-    axios.delete('/api/' + data._id)
-      .then((response) => {
-      });
-    this.props.delete(data);
+  handleSubmit() {
+    this.handleSave();
   }
 
   handleChangeFor = (propertyName, ) => (event) => {    
@@ -70,12 +84,12 @@ class FlightEditor extends Component {
       <form className="flight-form" onSubmit={this.handleSubmit}>
         <div className="dest">
           <div className="dest__block">
-            <input type="text" className="city" onChange={this.handleChangeFor('takeoff.city')} value={this.state.data.takeoff.city}/>
-            <input type="text" className="airport" onChange={this.handleChangeFor('takeoff.airport')} value={this.state.data.takeoff.airport}/>
+            <input type="text" className="city" placeholder="Город вылета" onChange={this.handleChangeFor('takeoff.city')} value={this.state.data.takeoff.city}/>
+            <input type="text" className="airport" placeholder="Аэропорт вылета" onChange={this.handleChangeFor('takeoff.airport')} value={this.state.data.takeoff.airport}/>
             <input type="datetime-local" className="time" onChange={this.handleChangeFor('takeoff.time')} value={this.state.data.takeoff.time}/>
           </div>
           <div className="info">
-          <input type="text" className="flight" onChange={this.handleChangeFor('name')} value={this.state.data.name}/>
+          <input type="text" className="flight" placeholder="Номер рейса" onChange={this.handleChangeFor('name')} value={this.state.data.name}/>
             <div className="arrow">
             &#9992;
             </div>
@@ -89,13 +103,16 @@ class FlightEditor extends Component {
             </select>   
           </div>
           <div className="dest__block">
-            <input type="text" className="city" onChange={this.handleChangeFor('landing.city')} value={this.state.data.landing.city}/>
-            <input type="text" className="airport" onChange={this.handleChangeFor('landing.airport')} value={this.state.data.landing.airport}/>
+            <input type="text" className="city" placeholder="Город посадки" onChange={this.handleChangeFor('landing.city')} value={this.state.data.landing.city}/>
+            <input type="text" className="airport" placeholder="Аэропорт посадки" onChange={this.handleChangeFor('landing.airport')} value={this.state.data.landing.airport}/>
             <input type="datetime-local" className="time" onChange={this.handleChangeFor('landing.time')} value={this.state.data.landing.time}/>
           </div>
         </div>
-        <input className="save" type="button" onClick={this.handleSave} value="Сохранить"/>
-        <input className="delete" type="button" onClick={this.handleDelete} value="Удалить"/>
+        <Buttons 
+        save={this.handleSave} 
+        create={this.handleCreate}
+        delete={this.handleDelete}
+        isCreate={this.props.isCreate} />
       </form>
     )
   }
@@ -103,6 +120,8 @@ class FlightEditor extends Component {
 
 FlightEditor.propTypes = {};
 
-FlightEditor.defaultProps = {};
+FlightEditor.defaultProps = {
+  data: {"_id":"","name":"","takeoff":{"time":"","city":"","airport":""},"landing":{"time":"","city":"","airport":""},"status":""}
+};
 
 export default FlightEditor;

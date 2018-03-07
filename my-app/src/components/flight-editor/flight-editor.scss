@@ -39,7 +39,6 @@ $color-light-purple: rgb(248, 234, 248);
   }
 }
 
-
 .city {
   margin: 0px;
   font-size: 24px;
@@ -74,13 +73,14 @@ $color-light-purple: rgb(248, 234, 248);
   height: 30px;  
 }
 
-.save {
+.save, .create {
   @include button;
   color: $color-light-purple;
   background-color: $color-medium-purple;
   border: 1px solid $color-light-purple;
 
 }
+
 .delete {
   @include button;
   color: $color-light-purple;
