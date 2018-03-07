@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import './admin.scss';
 import Form from '../form/form';
@@ -9,7 +10,6 @@ class Admin extends Component {
   constructor (props) {
     super(props);
     this.state = {flights: []};
-
     this.readFlights = this.readFlights.bind(this);
     this.createFlight = this.createFlight.bind(this);
     this.saveFlight = this.saveFlight.bind(this);
@@ -17,7 +17,6 @@ class Admin extends Component {
   }
 
   readFlights (data) {
-    console.log(data);
     this.setState({filter: data});
     axios.get('/api/', {
       params: {
@@ -25,17 +24,28 @@ class Admin extends Component {
         status: (data) ? data.status: ''
       }
     })
-      .then((response) => {        
+      .then((response) => {    
         this.setState({flights: response.data});
-        console.log(this.state.flights);
       });   
   }
 
   createFlight (data) {
+    const createBlock = ReactDOM.findDOMNode(this.refs.content);
     axios.post('/api/', data)
       .then((response) => {
+
+        this.setState({createData: {clean: true}});
+        createBlock.classList.add("success");
+        createBlock.addEventListener('click', ()=> createBlock.classList.remove("success"))
         this.readFlights(this.state.filter);
-      });      
+      }, (err) => {
+        
+        this.setState({createData: data});
+        createBlock.classList.add("wrn");
+        createBlock.addEventListener('click', ()=> createBlock.classList.remove("wrn"))
+        
+      }
+    );      
   }
 
   saveFlight (data) {
@@ -72,8 +82,8 @@ class Admin extends Component {
           </div>
 
         </div>
-        <div className="content">
-          <FlightEditor isCreate={true} onCreate={this.createFlight}  />
+        <div className="content" ref="content">
+          <FlightEditor isCreate={true} data={this.state.createData} onCreate={this.createFlight}  />
         </div>  
         {this.state.flights.map((flight, index) => 
           <div className="content" key={flight._id}>

@@ -23,12 +23,14 @@ $color-light-purple: rgb(248, 234, 248);
       border: none;
       outline: none;
       text-align: left;
+      background-color: transparent;
     }
     &:last-child {
       input {
         text-align: right;
+        background-color: transparent;
       }
-      label {
+      label {        
         text-align: right;
       }
     }
@@ -38,6 +40,7 @@ $color-light-purple: rgb(248, 234, 248);
       border: none;
       outline: none;
       text-align: center;
+      background-color: transparent;
     }
   }
 }

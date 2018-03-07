@@ -25,7 +25,6 @@ let router = (app, db) => {
     /* rest api */
 
     app.get('/api/', parseJson, (req, res) => {
-        console.log(req.query);
         collection.find(
             {
                 "$and": [
@@ -100,10 +99,19 @@ let router = (app, db) => {
 }
 
 const checkData = (data) => {
-    for (key in data) {
-        if (!data[key]) return false;
+    console.log(data);
+    let checker = (obj) => {
+        for (key in obj) {
+            if (!obj[key]) return false;
+        }
         return true;
     }
+
+    checker(data);
+
+    return (data.landing) ? checker(data.landing) : false;
+    return (data.takeoff) ? checker(data.takeoff) : false;
+    return (checker(data)) ? true : false;
 }
 
 /* db connect */
@@ -116,5 +124,4 @@ mongoClient.connect(dbUri, (err, db) => {
 
 app.listen(9999, function () {
     console.log('listen 9999'+ ' at ' + date.now());
-
 });
