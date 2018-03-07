@@ -26,28 +26,24 @@ class Form extends Component {
 
   }
 
-  handleCity (event) {
-    this.state.city = event.target.value;
-    this.sendRequest();
+  async handleCity (event) {
+    await this.setState({city: event.target.value});
+    await this.props.onSubmit(this.state);
   }
 
-  handleStatus (event) {
-    this.state.status = event.target.value;
-    this.sendRequest();
+  async handleStatus (event) {
+    this.setState({status: event.target.value});
+    this.props.onSubmit(this.state);
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
-    this.sendRequest();
+    this.props.onSubmit(this.state);
   }
 
   makeOption (option, index) {
     return <option key={index} value={option.value}>{option.label}</option>;
   };
-
-  sendRequest () {
-    this.props.onSubmit(this.state);
-  }
 
   render() { 
     return (

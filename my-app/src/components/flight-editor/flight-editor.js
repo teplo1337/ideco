@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './flight-editor.scss';
 
 class Buttons extends React.Component {
-  constructor (props) {
-    super(props);
-
-  }
 
   save = <input className="save" key="key1"type="button" onClick={this.props.save} value="Сохранить"/>;
   delete = <input className="delete" key="key2"type="button" onClick={this.props.delete} value="Удалить"/>;
@@ -44,7 +40,7 @@ class FlightEditor extends Component {
       if (!prop) { return false }
     }    
     this.props.onCreate(this.state.data);
-    this.state.data = {"_id":"","name":"","takeoff":{"time":"","city":"","airport":""},"landing":{"time":"","city":"","airport":""},"status":""};
+    this.setState({data: {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
   }
 
   handleSave() {

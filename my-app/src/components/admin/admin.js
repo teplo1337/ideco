@@ -17,6 +17,7 @@ class Admin extends Component {
   }
 
   readFlights (data) {
+    console.log(data);
     this.setState({filter: data});
     axios.get('/api/', {
       params: {
@@ -24,17 +25,15 @@ class Admin extends Component {
         status: (data) ? data.status: ''
       }
     })
-      .then((response) => {
-        console.log(response.data)
+      .then((response) => {        
         this.setState({flights: response.data});
+        console.log(this.state.flights);
       });   
   }
 
   createFlight (data) {
-    console.log(data);
     axios.post('/api/', data)
       .then((response) => {
-        console.log(response);
         this.readFlights(this.state.filter);
       });      
   }
@@ -42,7 +41,6 @@ class Admin extends Component {
   saveFlight (data) {
     axios.put('/api/', data)
       .then((response) => {
-        console.log(response);
         this.readFlights(this.state.filter);
       });
   }
@@ -50,7 +48,6 @@ class Admin extends Component {
   deleteFlight (data) {
     axios.delete('/api/' + data._id)
       .then((response) => {
-        console.log(response);
         this.readFlights(this.state.filter);
       });
   }
@@ -78,8 +75,8 @@ class Admin extends Component {
         <div className="content">
           <FlightEditor isCreate={true} onCreate={this.createFlight}  />
         </div>  
-        {this.state.flights.map(flight => 
-          <div className="content">
+        {this.state.flights.map((flight, index) => 
+          <div className="content" key={flight._id}>
           <FlightEditor onDelete={this.deleteFlight} onSave={this.saveFlight} data={flight} />
         </div>)}
 

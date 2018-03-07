@@ -21,7 +21,9 @@ class Flight extends Component {
     return options.map((status) => {
       if (status.value === number) {
         return status.label;
-      }      
+      } else {
+        return false;
+      }
     });
   }
 
