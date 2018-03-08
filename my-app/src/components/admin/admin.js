@@ -33,8 +33,7 @@ class Admin extends Component {
     const createBlock = ReactDOM.findDOMNode(this.refs.content);
     axios.post('/api/', data)
       .then((response) => {
-
-        this.setState({createData: {clean: true}});
+        
         createBlock.classList.add("success");
         createBlock.addEventListener('click', ()=> createBlock.classList.remove("success"))
         this.readFlights(this.state.filter);
@@ -82,8 +81,8 @@ class Admin extends Component {
           </div>
 
         </div>
-        <div className="content" ref="content">
-          <FlightEditor isCreate={true} data={this.state.createData} onCreate={this.createFlight}  />
+        <div className="content" key="contentCreate" ref="content">
+          <FlightEditor key="contentCreateEditor" isCreate={true} data={this.state.createData} onCreate={this.createFlight}  />
         </div>  
         {this.state.flights.map((flight, index) => 
           <div className="content" key={flight._id}>

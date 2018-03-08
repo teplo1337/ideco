@@ -106,11 +106,22 @@ const checkData = (data) => {
         }
         return true;
     }
-
-    checker(data);
-
-    return (data.landing) ? checker(data.landing) : false;
-    return (data.takeoff) ? checker(data.takeoff) : false;
+    
+    if (data.landing) {
+        if (!checker(data.landing)) {
+            console.log('ok1')
+            return false;
+        }
+        console.log('ok6')
+    } 
+    if (data.takeoff) {
+        if (!checker(data.takeoff)) {
+            console.log('ok2')
+            return false;
+        }
+        console.log('ok4')
+    } 
+    console.log('ok3')
     return (checker(data)) ? true : false;
 }
 
