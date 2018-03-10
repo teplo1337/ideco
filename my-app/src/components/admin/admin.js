@@ -9,7 +9,9 @@ import axios from 'axios';
 class Admin extends Component {
   constructor (props) {
     super(props);
+
     this.state = {flights: []};
+
     this.readFlights = this.readFlights.bind(this);
     this.createFlight = this.createFlight.bind(this);
     this.saveFlight = this.saveFlight.bind(this);
@@ -32,12 +34,13 @@ class Admin extends Component {
   createFlight (data) {
     const createBlock = ReactDOM.findDOMNode(this.refs.content);
     axios.post('/api/', data)
-      .then((response) => {
+      .then( async (response) => {
         
+        await this.setState({createData : {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
         createBlock.classList.add("success");
         createBlock.addEventListener('click', ()=> createBlock.classList.remove("success"))
         this.readFlights(this.state.filter);
-      }, (err) => {
+      }, (err) => {        
         
         this.setState({createData: data});
         createBlock.classList.add("wrn");
@@ -64,13 +67,13 @@ class Admin extends Component {
   render() {
     return (
       <div className="Admin">
+      
         <div className="nav">
           <Link to="/"><button>Monitor</button></Link>
           <Link to="/adm"><button>Admin</button></Link>
         </div>
 
         <div className="header">
-          
           <div className="name">
             <h1>Онлайн табло</h1>
             <p>Выбрано рейсов: {this.state.flights.length}</p>
@@ -79,15 +82,16 @@ class Admin extends Component {
           <div className="search">
             <Form onSubmit={this.readFlights}/>
           </div>
-
         </div>
+
         <div className="content" key="contentCreate" ref="content">
           <FlightEditor key="contentCreateEditor" isCreate={true} data={this.state.createData} onCreate={this.createFlight}  />
         </div>  
         {this.state.flights.map((flight, index) => 
           <div className="content" key={flight._id}>
-          <FlightEditor onDelete={this.deleteFlight} onSave={this.saveFlight} data={flight} />
-        </div>)}
+            <FlightEditor onDelete={this.deleteFlight} onSave={this.saveFlight} data={flight} />
+          </div>
+        )}
 
       </div>
     );

@@ -24,6 +24,9 @@ $color-light-purple: rgb(248, 234, 248);
       outline: none;
       text-align: left;
       background-color: transparent;
+      &[type="text"] {
+        border-bottom: 1px solid black;
+      }
     }
     &:last-child {
       input {
@@ -41,6 +44,9 @@ $color-light-purple: rgb(248, 234, 248);
       outline: none;
       text-align: center;
       background-color: transparent;
+      &[type="text"] {
+        border-bottom: 1px solid black;
+      }      
     }
   }
 }

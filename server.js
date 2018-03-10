@@ -99,7 +99,6 @@ let router = (app, db) => {
 }
 
 const checkData = (data) => {
-    console.log(data);
     let checker = (obj) => {
         for (key in obj) {
             if (!obj[key]) return false;
@@ -109,19 +108,14 @@ const checkData = (data) => {
     
     if (data.landing) {
         if (!checker(data.landing)) {
-            console.log('ok1')
             return false;
         }
-        console.log('ok6')
     } 
     if (data.takeoff) {
         if (!checker(data.takeoff)) {
-            console.log('ok2')
             return false;
         }
-        console.log('ok4')
     } 
-    console.log('ok3')
     return (checker(data)) ? true : false;
 }
 
