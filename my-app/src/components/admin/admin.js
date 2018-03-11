@@ -67,7 +67,7 @@ class Admin extends Component {
   render() {
     return (
       <div className="Admin">
-      
+
         <div className="nav">
           <Link to="/"><button>Monitor</button></Link>
           <Link to="/adm"><button>Admin</button></Link>
@@ -88,8 +88,8 @@ class Admin extends Component {
           <FlightEditor key="contentCreateEditor" isCreate={true} data={this.state.createData} onCreate={this.createFlight}  />
         </div>  
         {this.state.flights.map((flight, index) => 
-          <div className="content" key={flight._id}>
-            <FlightEditor onDelete={this.deleteFlight} onSave={this.saveFlight} data={flight} />
+          <div className="content" key={"content" + flight._id}>
+            <FlightEditor onDelete={this.deleteFlight} key={flight._id} onSave={this.saveFlight} data={flight} />
           </div>
         )}
 

@@ -4,11 +4,12 @@ import './flight-editor.scss';
 const Buttons = (props) => {
   let buttons = [];
   const saveButton   = <input className="save" key="key1"type="button" onClick={props.save} value="Сохранить"/>,
-        deleteButton = <input className="delete" key="key2"type="button" onClick={props.delete} value="Удалить"/>,
-        createButton = <input className="create" key="key3"type="button" onClick={props.create} value="Создать"/>;
+        resetButton  = <input className="reset" key="key2"type="button" onClick={props.reset} value="Сброс"/>,
+        deleteButton = <input className="delete" key="key3"type="button" onClick={props.delete} value="Удалить"/>,
+        createButton = <input className="create" key="key4"type="button" onClick={props.create} value="Создать"/>;
 
   if (props.isCreate) {
-    buttons = [createButton];
+    buttons = [createButton, resetButton];
   } else {
     buttons = [saveButton, deleteButton];
   }
@@ -29,6 +30,8 @@ class FlightEditor extends Component {
     this.handleCreate = this.handleCreate.bind(this)
     this.handleSave = this.handleSave.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+
     this.handleChangeFor = this.handleChangeFor.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     
@@ -41,8 +44,13 @@ class FlightEditor extends Component {
     }   
   }
 
+  handleReset () {
+     this.setState({data: {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
+  }
+
   handleCreate() {
     this.props.onCreate(this.state.data);
+    this.handleReset ();
   }
 
   handleSave() {
@@ -118,6 +126,7 @@ class FlightEditor extends Component {
           save={this.handleSave} 
           create={this.handleCreate}
           delete={this.handleDelete}
+          reset={this.handleReset}
           isCreate={this.props.isCreate} />
       </form>
     )

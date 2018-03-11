@@ -45,7 +45,7 @@ class Monitor extends Component {
           </div>
 
         </div>        
-          {this.state.flights.map((flight, index) => <div key={flight._id} className="content"><Flight key={flight._id} data={flight}/></div>)}
+          {this.state.flights.map((flight, index) => <div key={"content" + flight._id} className="content"><Flight key={flight._id} data={flight}/></div>)}
 
       </div>
     );

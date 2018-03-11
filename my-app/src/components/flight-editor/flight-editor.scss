@@ -93,7 +93,7 @@ $color-light-purple: rgb(248, 234, 248);
 
 }
 
-.delete {
+.delete, .reset {
   @include button;
   color: $color-light-purple;
   background-color: rgb(255, 116, 116);
