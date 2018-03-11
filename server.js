@@ -30,11 +30,11 @@ let router = (app, db) => {
                 "$and": [
                     {
                         "$or": [
-                            { "takeoff.city": (req.query.city) ? {"$regex": req.query.city} : {
+                            { "takeoff.city": (req.query.city) ? {"$regex":  req.query.city, "$options" : 'i'} : {
                                     "$exists": "<string>"
                                 }
                             },
-                            { "landing.city": (req.query.city) ? {"$regex": req.query.city} : {
+                            { "landing.city": (req.query.city) ? {"$regex":  req.query.city, "$options" : 'i'} : {
                                     "$exists": "<string>"
                                 }
                             },
