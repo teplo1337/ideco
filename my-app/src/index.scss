@@ -1,3 +1,6 @@
 body {
   background-color: rgb(248, 234, 248);
+  margin: 0px;
 }
+
+@media screen and (max-width: 320px) { @viewport { width: 300px; } }

@@ -11,13 +11,14 @@ $color-light-purple: rgb(248, 234, 248);
 }
 
 .Monitor {
+  min-width: 900px;
   display: flex;
   flex-direction: column;
 }
 .nav {
   text-align: center;
-  a {
-    margin: 0 15px;
+  button {
+    margin: auto 15px;
   }
 }
 .header {
