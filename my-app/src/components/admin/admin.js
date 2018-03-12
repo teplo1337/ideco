@@ -38,13 +38,13 @@ class Admin extends Component {
         
         await this.setState({createData : {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
         createBlock.classList.add("success");
-        createBlock.addEventListener('click', () => createBlock.classList.remove("success"))
+        createBlock.addEventListener('click', () => createBlock.classList.remove("success"));
         this.readFlights(this.state.filter);
-      }, (err) => {        
+      }, (err) => {
         
         this.setState({createData: data});
         createBlock.classList.add("wrn");
-        createBlock.addEventListener('click', () => createBlock.classList.remove("wrn"))
+        createBlock.addEventListener('click', () => createBlock.classList.remove("wrn"));
         
       }
     );      

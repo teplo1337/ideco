@@ -69,6 +69,11 @@ $color-light-purple: rgb(248, 234, 248);
   background-color: rgb(182, 255, 182);
 }
 .wrn {
-  background-color: #ffd1d1;
-  border: 1px solid #ff5555;
+  background-color: #ffd1d1 !important;
+  border: 1px solid #ff5555 !important;
+
+}
+
+label.wrn-message.wrn {
+  display: inline-block;
 }

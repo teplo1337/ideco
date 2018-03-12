@@ -62,7 +62,7 @@ let router = (app, db) => {
             type: req.body.type
         }
         if (checkData(data)) {
-            collection.insert(data, function(err, result) {
+            collection.insert(data, (err, result) => {
                 (err) ? res.status(200).end() : res.status(200).send(result);
             });
         } else {
@@ -127,6 +127,6 @@ mongoClient.connect(dbUri, (err, db) => {
 
 /* start server */
 
-app.listen(9999, function () {
+app.listen(9999, () => {
     console.log('listen 9999'+ ' at ' + date.now());
 });

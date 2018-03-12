@@ -14,7 +14,7 @@ const Buttons = (props) => {
     buttons = [saveButton, deleteButton];
   }
   return (
-    <div>{buttons}</div>
+    <label>{buttons}</label>
   );
 }
 
@@ -35,7 +35,7 @@ class FlightEditor extends Component {
     this.handleChangeFor = this.handleChangeFor.bind(this);
     this.componentWillReceiveProps = this.componentWillReceiveProps.bind(this);
     
-  }
+  }  
 
   componentWillReceiveProps (nextProps) {
     
@@ -48,27 +48,52 @@ class FlightEditor extends Component {
      this.setState({data: {"_id":"","name":"","takeoff":{"time":"","fact_time":"","city":"","airport":""},"landing":{"time":"","fact_time":"","city":"","airport":""},"status":"","type": ""}});
   }
 
+  validator () {
+    let flightForm = this.refs.flightForm;
+    let check = true;
+    flightForm.querySelectorAll('select, input[type="text"], input[type="datetime-local"').forEach((element) => {
+      if (!element.value) {
+        this.refs.errMessage.classList.add('wrn');
+        element.classList.add('wrn');
+        element.addEventListener('click',() => {
+          element.classList.remove('wrn');
+          this.refs.errMessage.classList.remove('wrn');
+        });
+        check = false;
+      } 
+    });
+    console.log(check);
+    return check;
+  }
+
   handleCreate() {
-    this.props.onCreate(this.state.data);
-    this.handleReset ();
+
+    if (this.validator()) {
+      this.props.onCreate(this.state.data);
+      this.handleReset();
+    }
+ 
   }
 
   handleSave() {
-    this.props.onSave(this.state.data);
+    console.log('this.validator', this.validator())
+    if (this.validator()) {
+      this.props.onSave(this.state.data);
+    }
   }
 
   handleDelete() {
     this.props.onDelete(this.state.data);
   }
 
-  handleSubmit() {
-    this.handleSave();
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   handleChangeFor = (propertyName, ) => (event) => {    
     const key1 = propertyName.split('.')[0],
-    key2 = propertyName.split('.')[1],
-    newData = this.state.data;
+          key2 = propertyName.split('.')[1],
+          newData = this.state.data;
 
     if (key2) {
       newData[key1][key2] = event.target.value;
@@ -128,6 +153,7 @@ class FlightEditor extends Component {
           delete={this.handleDelete}
           reset={this.handleReset}
           isCreate={this.props.isCreate} />
+        <label ref="errMessage" className="wrn-message">Ошибка, все поля должны быть заполнены!</label>
       </form>
     )
   }
